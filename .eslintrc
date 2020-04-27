@@ -1,0 +1,8 @@
+{
+  "rules": {
+    "semi": "off",
+    "import/no-extraneous-dependencies": "off",
+    "no-undef": "off"
+},
+  "extends": "airbnb-base"
+}
