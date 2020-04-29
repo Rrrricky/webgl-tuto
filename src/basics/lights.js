@@ -9,10 +9,10 @@ pointLight.castShadow = true
 
 export const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
 
-export const directionalLight = new THREE.DirectionalLight(0x00fffc, 1)
-directionalLight.position.x = -2
-directionalLight.position.y = 3
-directionalLight.position.z = 4
+export const directionalLight = new THREE.DirectionalLight(0xffffff, 1)
+directionalLight.position.x = 5
+directionalLight.position.y = 5
+directionalLight.position.z = 5
 
 export const hemisphereLight = new THREE.HemisphereLight(0xff0000, 0x0000ff, 0.3)
 
