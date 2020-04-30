@@ -8,12 +8,15 @@ import camera from './house/camera'
 import renderer from './house/renderer'
 import { mouseMove, resizeWindow } from './house/controls'
 import gltfLoader from './models/models'
+import shaderMesh, { shaderMaterial } from './shaders/shaderMaterial'
+
 
 gltfLoader.load(
   './src/models/duck/glTF-Draco/Duck.gltf',
   (gltf) => {
     const child = gltf.scene.children[0]
     scene.add(child)
+    child.visible = false
   },
 )
 
@@ -22,6 +25,7 @@ const scene = new THREE.Scene()
 scene.add(houseGroup)
 scene.add(objectsGroup)
 scene.add(particles)
+scene.add(shaderMesh)
 scene.add(camera)
 scene.add(ambientLight)
 scene.add(directionalLight)
@@ -36,14 +40,13 @@ particles.visible = false
 mouseMove()
 resizeWindow()
 
+const startTime = Date.now()
 const loop = () => {
   window.requestAnimationFrame(loop)
   renderer.render(scene, camera) // Render
-  // Update objects
-  sphere.rotation.y += 0.002
-  plane.rotation.y += 0.002
-  torusKnot.rotation.y += 0.002
-  particles.rotation.y += 0.002
-  particles.rotation.y += 0.002
+  // Update shader
+  const elapsedTime = Date.now() - startTime
+  shaderMaterial.uniforms.uTime.value = elapsedTime
 }
+
 loop()
